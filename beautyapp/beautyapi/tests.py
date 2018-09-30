@@ -5,6 +5,7 @@ from django.test import TestCase
 from django.test import TestCase
 from .models import Bucketlist
 from .models import Teste
+from .models import Cliente
 from rest_framework.test import APIClient
 from rest_framework import status
 from django.core.urlresolvers import reverse
@@ -43,6 +44,24 @@ class ModelTestCaseTeste(TestCase):
         self.assertNotEqual(old_count, new_count)
 
 # Define this after the ModelTestCase
+
+class ModelTestCaseCLCliente(TestCase):
+    """This class defines the test suite for the teste model."""
+
+    def setUp(self):
+        """Define the test client and other test variables."""
+        self.cliente_nome = "Write world class code"
+        self.cliente = Cliente(name=self.cliente_nome)
+
+    def test_model_can_create_a_cliente(self):
+        """Test the teste model can create a teste."""
+        old_count = Cliente.objects.count()
+        self.cliente.save()
+        new_count = Cliente.objects.count()
+        self.assertNotEqual(old_count, new_count)
+
+# Define this after the ModelTestCase
+
 
 class ViewTestCase(TestCase):
     """Test suite for the api views."""
@@ -114,6 +133,52 @@ class ViewTestCaseTeste(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertContains(response, teste)
+'''
+    def test_api_can_update_bucketlist(self):
+        """Test the api can update a given bucketlist."""
+        change_bucketlist = {'name': 'Something new'}
+        res = self.client.put(
+            reverse('details', kwargs={'pk': bucketlist.id}),
+            change_bucketlist, format='json'
+        )
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+    def test_api_can_delete_bucketlist(self):
+        """Test the api can delete a bucketlist."""
+        bucketlist = Bucketlist.objects.get()
+        response = self.client.delete(
+            reverse('details', kwargs={'pk': bucketlist.id}),
+            format='json',
+            follow=True)
+
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
+'''
+
+class ViewTestCaseCliente(TestCase):
+    """Test suite for the api views."""
+
+    def setUp(self):
+        """Define the test client and other test variables."""
+        self.client = APIClient()
+        self.cliente_data = {'nome': 'Go to Ibiza'}
+        self.response = self.client.post(
+            reverse('create'),
+            self.bucketlist_data,
+            format="json")
+
+    def test_api_can_create_a_cliente(self):
+        """Test the api has bucket creation capability."""
+        self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+
+    def test_api_can_get_a_cliente(self):
+        """Test the api can get a given bucketlist."""
+        cliente = Cliente.objects.get()
+        response = self.client.get(
+            reverse('details',
+            kwargs={'pk': bucketlist.id}), format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, cliente)
 '''
     def test_api_can_update_bucketlist(self):
         """Test the api can update a given bucketlist."""
