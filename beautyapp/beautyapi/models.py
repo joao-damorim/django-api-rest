@@ -106,7 +106,7 @@ class CategoriaPrestador(models.Model):
     data = models.DateField()
 
 class PrestadorServico(models.Model):
-    padorrest = models.ForeignKey(Prestador, on_delete=models.CASCADE)
+    prestador = models.ForeignKey(Prestador, on_delete=models.CASCADE)
     servico = models.ForeignKey(Servico, on_delete=models.CASCADE)
     data = models.DateField()
     hora = models.TimeField()
