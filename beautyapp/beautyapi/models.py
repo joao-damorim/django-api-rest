@@ -90,12 +90,6 @@ class ClientePromocao(models.Model):
     data = models.DateField()
     hora = models.TimeField()
 
-class ClienteNotificacao(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    notificacao = models.ForeignKey(Notificacao, on_delete=models.CASCADE)
-    data = models.DateField()
-    hora = models.TimeField()
-
 class ClienteCategoria(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
