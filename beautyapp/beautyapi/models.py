@@ -44,15 +44,16 @@ class Notificacao(models.Model):
 class Promocao(models.Model):
     titulo = models.CharField(max_length=255, blank=False, unique=True)
     descricao = models.CharField(max_length=255, blank=False, unique=True)
-    imagem = models.CharField(max_length=255, blank=False, unique=True)
-    data = models.DateField()
-    hora = models.TimeField()
+    imagem_promocao = models.CharField(max_length=255, blank=False, unique=True)
+    link_promocao = models.CharField(max_length=255, blank=False, unique=True, default='')
+
 
     def __str__(self):
         return "{}".format(self.titulo)
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=255, blank=False, unique=True)
+    imagem_categoria = models.CharField(max_length=255, blank=False, unique=True, default='')
 
     def __str__(self):
         return "{}".format(self.nome)

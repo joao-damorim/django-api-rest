@@ -20,7 +20,6 @@ class TesteSerializer(serializers.ModelSerializer):
         model = Teste
         fields = ("id", "nome", "descricao")
 
-
 class ClienteSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -40,16 +39,14 @@ class PromocaoSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Promocao
-        fields = ("id", "titulo", "descricao", "imagem", "data", "hora")
-
-
+        fields = ("id", "titulo", "descricao", "imagem_promocao", "link_promocao")
 
 class CategoriaSerializer(serializers.ModelSerializer):
 
     class Meta:
 
         model = Categoria
-        fields = ("id", "nome")
+        fields = ("id", "nome", "imagem_categoria")
 
 class PrestadorSerializer(serializers.ModelSerializer):
 

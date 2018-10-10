@@ -5,11 +5,10 @@ from django.shortcuts import render
 from rest_framework import generics
 from .serializers import BucketlistSerializer
 from .serializers import TesteSerializer
-from .serializers import ClienteSerializer
+from .serializers import ClienteSerializer, CategoriaSerializer, PromocaoSerializer
 from .models import Bucketlist
 from .models import Teste
-from .models import Cliente
-
+from .models import Cliente, Categoria, Promocao
 
 class CreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
@@ -20,13 +19,11 @@ class CreateView(generics.ListCreateAPIView):
         """Save the post data when creating a new bucketlist."""
         serializer.save()
 
-
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     """This class handles the http GET, PUT and DELETE requests."""
 
     queryset = Bucketlist.objects.all()
     serializer_class = BucketlistSerializer
-
 
 class CreateViewTeste(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
@@ -36,7 +33,6 @@ class CreateViewTeste(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         """Save the post data when creating a new bucketlist."""
         serializer.save()
-
 
 class DetailsViewTeste(generics.RetrieveUpdateDestroyAPIView):
     """This class handles the http GET, PUT and DELETE requests."""
@@ -53,9 +49,38 @@ class CreateViewCliente(generics.ListCreateAPIView):
         """Save the post data when creating a new bucketlist."""
         serializer.save()
 
-
 class DetailsViewCliente(generics.RetrieveUpdateDestroyAPIView):
     """This class handles the http GET, PUT and DELETE requests."""
 
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+
+class CreateViewPromocao(generics.ListCreateAPIView):
+    """This class defines the create behavior of our rest api."""
+    queryset = Promocao.objects.all()
+    serializer_class = PromocaoSerializer
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new bucketlist."""
+        serializer.save()
+
+class DetailsViewPromocao(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = Promocao.objects.all()
+    serializer_class = PromocaoSerializer
+
+class CreateViewCategoria(generics.ListCreateAPIView):
+    """This class defines the create behavior of our rest api."""
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new bucketlist."""
+        serializer.save()
+
+class DetailsViewCategoria(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
